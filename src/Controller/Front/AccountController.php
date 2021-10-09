@@ -25,27 +25,13 @@ class AccountController extends AbstractController
      */
     public function profile(): Response
     {
-        $this->checkFromUser();
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('starting_activity');
+        }
         $user = $this->getUser();
         return $this->render('front/account/profile.html.twig', [
             'user' => $user,
         ]);
-    }
-
-    private function checkFromUser(): ?Response
-    {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('starting_activity');
-        }
-        return null;
-    }
-
-    private function checkFromGhost(): ?Response
-    {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('starting_activity');
-        }
-        return null;
     }
 
 //    /**
