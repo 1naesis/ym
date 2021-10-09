@@ -2,6 +2,7 @@
 {% block body %}
     <div style="text-align: center">
         <h2>Активити профиля</h2>
-        <a href="{{ path("login") }}">Выход</a>
+        <h3>Email: {{ user.getEmail() }}</h3>
+        <a href="{{ path("app_logout") }}">Выход</a>
     </div>
 {% endblock %}

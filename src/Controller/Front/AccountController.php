@@ -13,7 +13,11 @@ class AccountController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->redirectToRoute("profile");
+        if ($this->getUser()) {
+            return $this->redirectToRoute('profile');
+        } else {
+            return $this->redirectToRoute("app_login");
+        }
     }
 
     /**
@@ -21,29 +25,46 @@ class AccountController extends AbstractController
      */
     public function profile(): Response
     {
+        $this->checkFromUser();
+        $user = $this->getUser();
         return $this->render('front/account/profile.html.twig', [
-            'controller_name' => 'AccountController',
+            'user' => $user,
         ]);
     }
 
-
-    /**
-     * @Route("/register", name="register")
-     */
-    public function register(): Response
+    private function checkFromUser(): ?Response
     {
-        return $this->render('front/account/register.html.twig', [
-            'controller_name' => 'AccountController',
-        ]);
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('starting_activity');
+        }
+        return null;
     }
 
-    /**
-     * @Route("/login", name="login")
-     */
-    public function login(): Response
+    private function checkFromGhost(): ?Response
     {
-        return $this->render('front/account/login.html.twig', [
-            'controller_name' => 'AccountController',
-        ]);
+        if ($this->getUser()) {
+            return $this->redirectToRoute('starting_activity');
+        }
+        return null;
     }
+
+//    /**
+//     * @Route("/register", name="register")
+//     */
+//    public function register(): Response
+//    {
+//        return $this->render('front/account/register.html.twig', [
+//            'controller_name' => 'AccountController',
+//        ]);
+//    }
+
+//    /**
+//     * @Route("/login", name="login")
+//     */
+//    public function login(): Response
+//    {
+//        return $this->render('front/account/login.html.twig', [
+//            'controller_name' => 'AccountController',
+//        ]);
+//    }
 }
