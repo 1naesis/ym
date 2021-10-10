@@ -6,10 +6,12 @@
 
 .header{
     padding: 7px 0;
-    text-align: center;
     background-color: #5eb5e0;
     color: #fff;
     height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .form_one_page{

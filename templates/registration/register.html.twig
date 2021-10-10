@@ -9,6 +9,15 @@
         attr: {'class': "form_one_page"}
     }) }}
         <div class="input_standart_wrapper">
+            {% if error %}
+                <div class="error_standart_wrapper">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% else %}
+                <div class="error_standart_wrapper" style="opacity: 0">
+                    Тестовая ошибка
+                </div>
+            {% endif %}
             <p class="label_input">Email</p>
             {{ form_row(registrationForm.email, {
                 attr: {'class': "input_standart"},
