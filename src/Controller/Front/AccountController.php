@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,10 +29,29 @@ class AccountController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirectToRoute('starting_activity');
         }
+
         $user = $this->getUser();
         return $this->render('front/account/profile.html.twig', [
             'user' => $user,
         ]);
+    }
+
+    /**
+     * @Route("/info", name="info")
+     */
+    public function info(Request $request): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('starting_activity');
+        }
+
+        print_r($request->cookies);
+        echo "<br>";
+        echo "<br>";
+        print_r($_SESSION);
+//        print_r($request->getSession());
+        echo '<br><br><a href="/profile">Назад</a>';
+        exit();
     }
 
 //    /**
