@@ -1,48 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
-
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <header class="header">
+        <h1>Авторизация</h1>
+    </header>
+    <form method="post" class="form_one_page">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+    {#    {% if app.user %}#}
+    {#        <div class="mb-3">#}
+    {#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
+    {#        </div>#}
+    {#    {% endif %}#}
+        <div class="input_standart_wrapper">
+            {% if error %}
+                <div class="error_standart_wrapper">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% else %}
+                <div class="error_standart_wrapper" style="opacity: 0">
+                    Тестовая ошибка
+                </div>
+            {% endif %}
+            <p class="label_input">Email</p>
+            <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control input_standart" autocomplete="username" required autofocus>
+            <br><br>
+            <p class="label_input">Пароль</p>
+            <input type="password" name="password" id="inputPassword" class="form-control input_standart" autocomplete="current-password" required>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
         </div>
-    {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
-    <label for="inputUuid">Email</label>
-    <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="username" required autofocus>
-    <br>
-    <br>
-    <label for="inputPassword">Пароль</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-
-{#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
-{#        See https://symfony.com/doc/current/security/remember_me.html#}
+    {#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
+    {#        See https://symfony.com/doc/current/security/remember_me.html#}
 
         <div class="checkbox mb-3" style="display: none">
             <label>
-                <input checked type="checkbox" name="_remember_me"> Remember me
+                <input type="checkbox" name="_remember_me">
             </label>
         </div>
-
-
-    <br>
-    <br>
-    <button class="btn btn-lg btn-primary" type="submit">
-        Войти
-    </button>
-</form>
-    <br>
-<a href="{{ path("register") }}">Регистрация</a>
+        <div class="btn_standart_wrapper">
+            <button type="submit" class="btn_standart">Войти</button>
+            <br><br>
+            <a href="{{ path("register") }}"><button type="button" class="btn_standart">Регистрация</button></a>
+        </div>
+    </form>
 {% endblock %}

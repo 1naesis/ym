@@ -1,20 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
-
 {% block body %}
-    <h1>Регистрация</h1>
+    <header class="header">
+        <h1>Регистрация</h1>
+    </header>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-    <br>
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Пароль'
-        }) }}
+    {{ form_start(registrationForm, {
+        attr: {'class': "form_one_page"}
+    }) }}
+        <div class="input_standart_wrapper">
+            <p class="label_input">Email</p>
+            {{ form_row(registrationForm.email, {
+                attr: {'class': "input_standart"},
+                label: false
+            }) }}
+            <br>
+            <p class="label_input">Пароль</p>
+            {{ form_row(registrationForm.plainPassword, {
+                attr: {'class': "input_standart"},
+                label: false
+            }) }}
+        </div>
 {#        {{ form_row(registrationForm.agreeTerms) }}#}
-        <br>
-        <button type="submit" class="btn">Зарегистрироваться</button>
+
+    <div class="btn_standart_wrapper">
+        <button type="submit" class="btn_standart">Зарегистрироваться</button>
+        <br><br>
+        <a href="{{ path("app_login") }}"><button type="button" class="btn_standart">Авторизация</button></a>
+    </div>
     {{ form_end(registrationForm) }}
-    <br>
-    <a href="{{ path("app_login") }}">Авторизация</a>
 {% endblock %}
