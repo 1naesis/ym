@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
-
+{% block header_title %}Регистрация{% endblock %}
 {% block body %}
-    <header class="header">
-        <h1>Регистрация</h1>
-    </header>
 
     {{ form_start(registrationForm, {
         attr: {'class': "form_one_page"}
@@ -38,4 +35,6 @@
         <a href="{{ path("app_login") }}"><button type="button" class="btn_standart">Авторизация</button></a>
     </div>
     {{ form_end(registrationForm) }}
+{% endblock %}
+{% block footer_nav %}
 {% endblock %}

@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+ul {
+    list-style-type: none;
+}
 
 .header{
     padding: 7px 0;
@@ -12,6 +15,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.body{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 10vh;
+    background-color: #5eb5e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav_item {
+    height: 8vh;
+    width: 30vw;
+    background-color: #e4f8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1vw;
+}
+.nav_item:last-child{
+    margin-right: 0;
 }
 
 .form_one_page{

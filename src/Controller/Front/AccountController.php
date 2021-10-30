@@ -37,7 +37,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/info", name="info")
+     * @Route("/setting", name="setting")
      */
     public function info(Request $request): Response
     {
@@ -45,13 +45,10 @@ class AccountController extends AbstractController
             return $this->redirectToRoute('starting_activity');
         }
 
-        print_r($request->cookies);
-        echo "<br>";
-        echo "<br>";
-        print_r($_SESSION);
-//        print_r($request->getSession());
-        echo '<br><br><a href="/profile">Назад</a>';
-        exit();
+        $user = $this->getUser();
+        return $this->render('front/account/setting.html.twig', [
+            'user' => $user,
+        ]);
     }
 
 //    /**

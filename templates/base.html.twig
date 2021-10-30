@@ -18,9 +18,26 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header class="header">
+            <h1>{% block header_title %}{% endblock %}</h1>
+        </header>
+        <section class="body">
+            {% block body %}{% endblock %}
+        </section>
+        {% block footer_nav %}
+            <footer class="footer">
+                <div class="nav_item" onclick="location.href='{{ path("profile") }}'">
+                    Г
+                </div>
+                <div class="nav_item" onclick="location.href='{{ path("setting") }}'">
+                    Н
+                </div>
+                <div class="nav_item" onclick="location.href='{{ path("app_logout") }}'">
+                    В
+                </div>
+            </footer>
+        {% endblock %}
     </body>
-
     {% block javascripts_down %}
         {#{{ encore_entry_script_tags('app') }}#}
     {% endblock %}

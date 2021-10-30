@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
-
+{% block header_title %}Авторизация{% endblock %}
 {% block body %}
-    <header class="header">
-        <h1>Авторизация</h1>
-    </header>
     <form method="post" class="form_one_page">
 
     {#    {% if app.user %}#}
@@ -46,4 +43,6 @@
             <a href="{{ path("register") }}"><button type="button" class="btn_standart">Регистрация</button></a>
         </div>
     </form>
+{% endblock %}
+{% block footer_nav %}
 {% endblock %}
