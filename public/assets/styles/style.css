@@ -17,10 +17,11 @@ ul {
     justify-content: center;
 }
 .body{
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /*height: 80vh;*/
+    /*width: 100vw;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
 }
 .footer{
     position: fixed;

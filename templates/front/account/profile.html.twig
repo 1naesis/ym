@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block header_title %}{{ user.getNickname() }}{% endblock %}
 {% block body %}
-    <div style="text-align: center">
+    <div style="text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column">
         <h3>Главная страница для пользователя: {{ user.getEmail() }}</h3>
     </div>
 {% endblock %}
