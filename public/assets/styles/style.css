@@ -88,3 +88,15 @@ ul {
     color: #fff;
     width: 90%;
 }
+
+/*Список кнопок*/
+.button-group {
+    width: 100vw;
+    height: 80vh;
+}
+.button-block {
+    text-align: center;
+    padding: 10px 0;
+    /*border-top: rgba(170, 170, 170, 0.47) solid 1px;*/
+    border-bottom: rgba(170, 170, 170, 0.47) solid 1px;
+}

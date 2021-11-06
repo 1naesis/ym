@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block header_title %}{{ user.getNickname() }}{% endblock %}
 {% block body %}
-    <div style="text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column">
-        <h3>Главная страница для пользователя: {{ user.getEmail() }}</h3>
+{#    <div style="text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column">#}
+{#        <h3>Главная страница для пользователя: {{ user.getEmail() }}</h3>#}
+{#    </div>#}
+    <div class="button-group">
+        <div class="button-block">
+            Сервисы
+        </div>
+        <div class="button-block" onclick="location.href='{{ path("setting") }}'">
+            Настройки
+        </div>
+        <div class="button-block" onclick="location.href='{{ path("app_logout") }}'">
+            Выход
+        </div>
     </div>
 {% endblock %}
