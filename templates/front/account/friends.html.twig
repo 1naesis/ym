@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block header_title %}Друзья{% endblock %}
+{% block body %}
+{#    <div style="text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column">#}
+{#        <h3>Главная страница для пользователя: {{ user.getEmail() }}</h3>#}
+{#    </div>#}
+    <div class="button-group">
+        <div class="find-friends">
+            <input class="search-input" type="text" id="search-input" value="{{ search }}"><div class="search-btn" id="search-btn">П</div>
+        </div>
+        {% if listUsers is not null %}
+            {% for user in listUsers %}
+                <div class="button-block">
+                    {{ user.getNickname() }} <br>
+                    {{ user.getEmail() }}
+                </div>
+            {% endfor %}
+        {% endif %}
+{#        <div class="button-block" onclick="location.href='{{ path("setting") }}'">#}
+{#            Настройки#}
+{#        </div>#}
+    </div>
+{% endblock %}

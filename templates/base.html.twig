@@ -38,6 +38,7 @@
             </footer>
         {% endblock %}
     </body>
+    <script src="{{ asset('assets/scripts/script.js') }}?{ 'now'|date('U') }}"></script>
     {% block javascripts_down %}
         {#{{ encore_entry_script_tags('app') }}#}
     {% endblock %}

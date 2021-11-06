@@ -2,6 +2,7 @@
 
 namespace App\Controller\Front;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,6 +49,30 @@ class AccountController extends AbstractController
         $user = $this->getUser();
         return $this->render('front/account/setting.html.twig', [
             'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/friends", name="friends")
+     */
+    public function friends(Request $request, UserRepository $userRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('starting_activity');
+        }
+
+        $listUsers = null;
+        $search = '';
+        if ($request->query->has('find')) {
+            $search = trim($request->query->get('find'));
+            $listUsers = $userRepository->findUsersLike($search);
+        }
+
+        $user = $this->getUser();
+        return $this->render('front/account/friends.html.twig', [
+            'user' => $user,
+            'listUsers' => $listUsers,
+            'search' => $search
         ]);
     }
 

@@ -88,7 +88,23 @@ ul {
     color: #fff;
     width: 90%;
 }
-
+/* Поиск*/
+.find-friends {
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+}
+.search-input {
+    padding: 5px;
+    width: 80vw;
+}
+.search-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18vw;
+    border: 1px solid #000;
+}
 /*Список кнопок*/
 .button-group {
     width: 100vw;
