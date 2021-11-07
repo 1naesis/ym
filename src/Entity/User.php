@@ -151,7 +151,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $friends = $this->friends;
         if (!$friends) {
-            $friends = [];
+            $friends = [0];
         }
         return array_unique($friends);
     }
