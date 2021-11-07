@@ -60,6 +60,29 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
 
+    public function addFriend(string $uuid, User $user): void
+    {
+        $friends = $user->getFriends();
+        if (!in_array($uuid, $friends)) {
+            $friends[] = $uuid;
+            $user->setFriends($friends);
+            $this->_em->flush($user);
+        }
+    }
+
+    public function removeFriend(string $uuid, User $user): void
+    {
+        $friends = $user->getFriends();
+        $newFriends = [];
+        foreach ($friends as $friend) {
+            if ($friend != $uuid) {
+                $newFriends[] = $friend;
+            }
+        }
+        $user->setFriends($newFriends);
+        $this->_em->flush($user);
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

@@ -62,15 +62,21 @@ class AccountController extends AbstractController
             return $this->redirectToRoute('starting_activity');
         }
 
+        $user = $this->getUser();
+
         $listUsers = null;
-        $friends = $userRepository->findFriendsByUser($this->getUser());
         $search = '';
         if ($request->query->has('find') && !empty(trim($request->query->get('find')))) {
             $search = trim($request->query->get('find'));
-            $listUsers = $userRepository->findUsersLike($search, $this->getUser());
+            $listUsers = $userRepository->findUsersLike($search, $user);
+        } else if ($request->query->has('add') && !empty(trim($request->query->get('add')))) {
+            $newUuid = trim($request->query->get('add'));
+            $userRepository->addFriend($newUuid, $user);
+        } else if ($request->query->has('remove') && !empty(trim($request->query->get('remove')))) {
+            $removeUuid = trim($request->query->get('remove'));
+            $userRepository->removeFriend($removeUuid, $user);
         }
-
-        $user = $this->getUser();
+        $friends = $userRepository->findFriendsByUser($user);
 
         return $this->render('front/account/friends.html.twig', [
             'user' => $user,

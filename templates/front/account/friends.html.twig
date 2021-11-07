@@ -12,7 +12,7 @@
             {% for user in listUsers %}
                 <div class="button-block">
                     {{ user.getNickname() }}
-                    <button style="padding: 5px" onclick="addFriend('{{ user.getUUid() }}')"> + </button>
+                    <button style="padding: 5px" onclick="location.href='/friends?add={{ user.getUUid() }}'"> + </button>
                     <br>
                     {{ user.getEmail() }}
                 </div>
@@ -20,7 +20,7 @@
         {% else %}
             {% for friend in friends %}
                 <div class="button-block">
-                    {{ friend.getNickname() }} <button style="padding: 5px" onclick="removeFriend('{{ friend.getUUid() }}')"> - </button> <br>
+                    {{ friend.getNickname() }} <button style="padding: 5px" onclick="location.href='/friends?remove={{ friend.getUUid() }}'"> - </button> <br>
                     {{ friend.getEmail() }}
                 </div>
             {% endfor %}
