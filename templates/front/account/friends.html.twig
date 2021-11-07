@@ -12,7 +12,7 @@
             {% for user in listUsers %}
                 <div class="button-block">
                     {{ user.getNickname() }}
-                    <button style="padding: 5px"> + </button>
+                    <button style="padding: 5px" onclick="addFriend('{{ friend.getUUid() }}')"> + </button>
                     <br>
                     {{ user.getEmail() }}
                 </div>

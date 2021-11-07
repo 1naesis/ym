@@ -7,5 +7,8 @@ if (document.getElementById("search-btn")) {
 }
 
 function removeFriend(uuid) {
-    confirm("Удалить removeFriend");
+    confirm("Удалить "+uuid);
+}
+function addFriend(uuid){
+    confirm("Добавить "+uuid);
 }
