@@ -36,13 +36,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function findUsersLike(string $search): array
+    public function findUsersLike(string $search, User $user): array
     {
         return $this->createQueryBuilder('u')
-            ->andWhere("u.uuid LIKE :l")
-            ->orWhere("u.nickname LIKE :l")
-            ->orWhere("u.email LIKE :l")
+            ->andWhere("u.uuid NOT IN(:friends) AND u.id != :my_id AND u.uuid LIKE :l")
+            ->orWhere("u.uuid NOT IN(:friends) AND u.id != :my_id AND u.nickname LIKE :l")
+            ->orWhere("u.uuid NOT IN(:friends) AND u.id != :my_id AND u.email LIKE :l")
             ->setParameter('l', "%$search%")
+            ->setParameter('my_id', $user->getId())
+            ->setParameter('friends', $user->getFriends())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findFriendsByUser(User $user): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere("u.uuid IN(:ids)")
+            ->setParameter('ids', $user->getFriends())
             ->getQuery()
             ->getResult()
         ;

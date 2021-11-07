@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function PHPUnit\Framework\isEmpty;
 
 class AccountController extends AbstractController
 {
@@ -62,17 +63,20 @@ class AccountController extends AbstractController
         }
 
         $listUsers = null;
+        $friends = $userRepository->findFriendsByUser($this->getUser());
         $search = '';
-        if ($request->query->has('find')) {
+        if ($request->query->has('find') && !empty(trim($request->query->get('find')))) {
             $search = trim($request->query->get('find'));
-            $listUsers = $userRepository->findUsersLike($search);
+            $listUsers = $userRepository->findUsersLike($search, $this->getUser());
         }
 
         $user = $this->getUser();
+
         return $this->render('front/account/friends.html.twig', [
             'user' => $user,
             'listUsers' => $listUsers,
-            'search' => $search
+            'search' => $search,
+            'friends' => $friends
         ]);
     }
 

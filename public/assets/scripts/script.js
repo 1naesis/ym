@@ -5,3 +5,7 @@ if (document.getElementById("search-btn")) {
         location.href = searchUrl;
     })
 }
+
+function removeFriend(uuid) {
+    confirm("Удалить removeFriend");
+}

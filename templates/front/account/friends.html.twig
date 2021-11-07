@@ -8,11 +8,20 @@
         <div class="find-friends">
             <input class="search-input" type="text" id="search-input" value="{{ search }}"><div class="search-btn" id="search-btn">П</div>
         </div>
-        {% if listUsers is not null %}
+        {% if listUsers is not empty %}
             {% for user in listUsers %}
                 <div class="button-block">
-                    {{ user.getNickname() }} <br>
+                    {{ user.getNickname() }}
+                    <button style="padding: 5px"> + </button>
+                    <br>
                     {{ user.getEmail() }}
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for friend in friends %}
+                <div class="button-block">
+                    {{ friend.getNickname() }} <button style="padding: 5px" onclick="removeFriend('{{ friend.getUUid() }}')"> - </button> <br>
+                    {{ friend.getEmail() }}
                 </div>
             {% endfor %}
         {% endif %}

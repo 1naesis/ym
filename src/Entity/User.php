@@ -43,6 +43,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
+     * @ORM\Column(type="json", nullable="true")
+     */
+    private ?array $friends = [];
+
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
@@ -140,6 +145,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
+    }
+
+    public function getFriends(): array
+    {
+        $friends = $this->friends;
+        if (!$friends) {
+            $friends = [];
+        }
+        return array_unique($friends);
+    }
+
+    public function setFriends(array $friends): void
+    {
+        $this->friends = $friends;
     }
 
     public function withRoles(array $roles): self
