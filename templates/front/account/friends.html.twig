@@ -12,15 +12,15 @@
             {% for user in listUsers %}
                 <div class="button-block">
                     {{ user.getNickname() }}
-                    <button style="padding: 5px" onclick="location.href='/friends?add={{ user.getUUid() }}'"> + </button>
+game                    - <a href="/friends?add={{ user.getUUid() }}">добавить</a>
                     <br>
                     {{ user.getEmail() }}
                 </div>
             {% endfor %}
         {% else %}
             {% for friend in friends %}
-                <div class="button-block">
-                    {{ friend.getNickname() }} <button style="padding: 5px" onclick="location.href='/friends?remove={{ friend.getUUid() }}'"> - </button> <br>
+                <div class="button-block" onclick="location.href='/game?invite={{ friend.getUUid() }}'">
+                    {{ friend.getNickname() }} - <a href="/friends?remove={{ friend.getUUid() }}">удалить</a> <br>
                     {{ friend.getEmail() }}
                 </div>
             {% endfor %}

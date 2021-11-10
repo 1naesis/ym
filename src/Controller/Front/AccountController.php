@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function PHPUnit\Framework\isEmpty;
 
 class AccountController extends AbstractController
 {
@@ -21,6 +20,25 @@ class AccountController extends AbstractController
         } else {
             return $this->redirectToRoute("app_login");
         }
+    }
+
+    /**
+     * @Route("/game", name="game")
+     */
+    public function game(Request $request): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('starting_activity');
+        }
+        $invite = "not invite";
+        if ($request->query->has('invite') && !empty(trim($request->query->get('invite')))) {
+            $invite = trim($request->query->get('invite'));
+        }
+        return $this->redirect("http://192.168.0.8:3000");
+        return new Response("<h2>GameZone с $invite</h2>");
+//        return $this->render('front/account/messenger.html.twig',[
+//
+//        ]);
     }
 
     /**
@@ -83,6 +101,18 @@ class AccountController extends AbstractController
             'listUsers' => $listUsers,
             'search' => $search,
             'friends' => $friends
+        ]);
+    }
+
+    /**
+     * @Route("/messenger", name="messenger")
+     */
+    public function messenger(): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('starting_activity');
+        }
+        return $this->render('front/account/messenger.html.twig',[
         ]);
     }
 

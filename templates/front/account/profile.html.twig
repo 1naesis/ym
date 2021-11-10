@@ -5,11 +5,17 @@
 {#        <h3>Главная страница для пользователя: {{ user.getEmail() }}</h3>#}
 {#    </div>#}
     <div class="button-group">
+{#        <div class="button-block" onclick="location.href='{{ path("messenger") }}'">#}
+{#            Сообщения#}
+{#        </div>#}
         <div class="button-block" onclick="location.href='{{ path("friends") }}'">
             Друзья
         </div>
         <div class="button-block" onclick="location.href='{{ path("setting") }}'">
             Настройки
+        </div>
+        <div class="button-block" onclick="location.href='{{ path("game") }}'">
+            Game
         </div>
         <div class="button-block" onclick="location.href='{{ path("app_logout") }}'">
             Выход
